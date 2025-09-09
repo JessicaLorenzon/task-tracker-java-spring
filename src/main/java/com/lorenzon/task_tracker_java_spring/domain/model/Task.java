@@ -1,5 +1,6 @@
 package com.lorenzon.task_tracker_java_spring.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,9 +21,13 @@ public class Task {
 
     private String description;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Enumerated(EnumType.STRING)
     private StatusTask status;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime createdAt;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime updatedAt;
 }
