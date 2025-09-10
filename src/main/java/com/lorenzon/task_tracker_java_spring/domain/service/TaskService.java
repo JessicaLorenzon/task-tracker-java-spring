@@ -5,9 +5,11 @@ import com.lorenzon.task_tracker_java_spring.domain.model.StatusTask;
 import com.lorenzon.task_tracker_java_spring.domain.model.Task;
 import com.lorenzon.task_tracker_java_spring.domain.repository.TaskRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,16 +24,46 @@ public class TaskService {
     }
 
     @Transactional
-    public void delete(Long taskId) {
+    public ResponseEntity<Void> delete(Long taskId) {
+        if (!taskRepository.existsById(taskId)) {
+            return ResponseEntity.notFound().build();
+        }
         taskRepository.deleteById(taskId);
+        return ResponseEntity.noContent().build();
     }
 
-    public Task findById(Long taskId) {
+    public List<Task> findAll() {
+        return taskRepository.findAll();
+    }
+
+    public ResponseEntity<Task> findById(Long taskId) {
         return taskRepository.findById(taskId)
+                .map(ResponseEntity::ok)
                 .orElseThrow(() -> new TaskException("Task not found!"));
     }
 
-    public List<Task> findByStatus(StatusTask status) {
-        return taskRepository.findByStatus(status);
+    public ResponseEntity<List<Task>> findByStatus(StatusTask status) {
+        List<Task> tasks = taskRepository.findByStatus(status);
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
+    @Transactional
+    public ResponseEntity<Task> update(Long taskId, Task taskInput) {
+        Task taskUpdate = taskRepository.findById(taskId)
+                .orElseThrow(() -> new TaskException("Task not found!"));
+
+        if (taskInput.getDescription() != null) {
+            taskUpdate.setDescription(taskInput.getDescription());
+        }
+        if (taskInput.getStatus() != null) {
+            taskUpdate.setStatus(taskInput.getStatus());
+        }
+        taskUpdate.setUpdatedAt(OffsetDateTime.now());
+
+        taskRepository.save(taskUpdate);
+        return ResponseEntity.ok(taskUpdate);
     }
 }

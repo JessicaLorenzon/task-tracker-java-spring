@@ -1,9 +1,10 @@
 package com.lorenzon.task_tracker_java_spring.api.controller;
 
+import com.lorenzon.task_tracker_java_spring.domain.exception.TaskException;
 import com.lorenzon.task_tracker_java_spring.domain.model.StatusTask;
 import com.lorenzon.task_tracker_java_spring.domain.model.Task;
-import com.lorenzon.task_tracker_java_spring.domain.repository.TaskRepository;
 import com.lorenzon.task_tracker_java_spring.domain.service.TaskService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,17 +18,16 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
-    private final TaskRepository taskRepository;
     private final TaskService taskService;
 
     @GetMapping
     public List<Task> list() {
-        return taskRepository.findAll();
+        return taskService.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Task add(@RequestBody Task task) {
+    public Task add(@Valid @RequestBody Task task) {
         task.setStatus(StatusTask.TODO);
         task.setCreatedAt(OffsetDateTime.now());
         return taskService.save(task);
@@ -35,46 +35,26 @@ public class TaskController {
 
     @DeleteMapping("/{taskId}")
     public ResponseEntity<Void> delete(@PathVariable Long taskId) {
-        if (!taskRepository.existsById(taskId)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        taskService.delete(taskId);
-        return ResponseEntity.noContent().build();
+        return taskService.delete(taskId);
     }
 
     @PutMapping("/{taskId}")
-    public ResponseEntity<Task> update(@PathVariable Long taskId, @RequestBody Task task) {
-
-        Task taskUpdate = taskService.findById(taskId);
-
-        if (task.getDescription() != null) {
-            taskUpdate.setDescription(task.getDescription());
-        }
-        if (task.getStatus() != null) {
-            taskUpdate.setStatus(task.getStatus());
-        }
-        taskUpdate.setUpdatedAt(OffsetDateTime.now());
-
-        taskService.save(taskUpdate);
-        return ResponseEntity.ok(taskUpdate);
+    public ResponseEntity<Task> update(@PathVariable Long taskId, @Valid @RequestBody Task task) {
+        return taskService.update(taskId, task);
     }
 
     @GetMapping("/{taskId}")
     public ResponseEntity<Task> searchById(@PathVariable Long taskId) {
-        return taskRepository.findById(taskId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return taskService.findById(taskId);
     }
 
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Task>> searchByStatus(@PathVariable StatusTask status) {
-        List<Task> tasks = taskService.findByStatus(status);
+        return taskService.findByStatus(status);
+    }
 
-        if (tasks.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(tasks);
+    @ExceptionHandler(TaskException.class)
+    public ResponseEntity<String> capture(TaskException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
