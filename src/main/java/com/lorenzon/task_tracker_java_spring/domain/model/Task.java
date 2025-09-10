@@ -21,7 +21,6 @@ public class Task {
 
     private String description;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Enumerated(EnumType.STRING)
     private StatusTask status;
 

@@ -45,8 +45,15 @@ public class TaskController {
 
     @PutMapping("/{taskId}")
     public ResponseEntity<Task> update(@PathVariable Long taskId, @RequestBody Task task) {
+
         Task taskUpdate = taskService.findById(taskId);
-        taskUpdate.setDescription(task.getDescription());
+
+        if (task.getDescription() != null) {
+            taskUpdate.setDescription(task.getDescription());
+        }
+        if (task.getStatus() != null) {
+            taskUpdate.setStatus(task.getStatus());
+        }
         taskUpdate.setUpdatedAt(OffsetDateTime.now());
 
         taskService.save(taskUpdate);
