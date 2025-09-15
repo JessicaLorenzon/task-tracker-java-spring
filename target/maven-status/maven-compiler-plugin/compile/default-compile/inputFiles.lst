@@ -1,0 +1,13 @@
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\api\assembler\TaskAssembler.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\api\controller\TaskController.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\api\exceptionhandler\ApiExceptionHandler.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\api\model\input\TaskInput.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\api\model\input\TaskUpdateInput.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\api\model\TaskRepresentationModel.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\common\ModelMapperConfig.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\domain\exception\TaskException.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\domain\model\StatusTask.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\domain\model\Task.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\domain\repository\TaskRepository.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\domain\service\TaskService.java
+C:\Users\Jessi\OneDrive\Documentos\dev\projects\task-tracker-java-spring\src\main\java\com\lorenzon\task_tracker_java_spring\TaskTrackerJavaSpringApplication.java

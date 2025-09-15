@@ -1,0 +1,13 @@
+com\lorenzon\task_tracker_java_spring\common\ModelMapperConfig.class
+com\lorenzon\task_tracker_java_spring\api\exceptionhandler\ApiExceptionHandler.class
+com\lorenzon\task_tracker_java_spring\domain\service\TaskService.class
+com\lorenzon\task_tracker_java_spring\api\model\input\TaskInput.class
+com\lorenzon\task_tracker_java_spring\api\model\input\TaskUpdateInput.class
+com\lorenzon\task_tracker_java_spring\domain\repository\TaskRepository.class
+com\lorenzon\task_tracker_java_spring\TaskTrackerJavaSpringApplication.class
+com\lorenzon\task_tracker_java_spring\api\controller\TaskController.class
+com\lorenzon\task_tracker_java_spring\api\assembler\TaskAssembler.class
+com\lorenzon\task_tracker_java_spring\api\model\TaskRepresentationModel.class
+com\lorenzon\task_tracker_java_spring\domain\exception\TaskException.class
+com\lorenzon\task_tracker_java_spring\domain\model\StatusTask.class
+com\lorenzon\task_tracker_java_spring\domain\model\Task.class

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.lorenzon</groupId>
     <artifactId>task-tracker-java-spring</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>task-tracker-java-spring</name>
     <description>API Task Tracker</description>
     <url/>
